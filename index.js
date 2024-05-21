@@ -3,14 +3,14 @@ import bodyParser from 'body-parser';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-const app = express();
-const PORT = 3000;
-
-// Sample database of users
+//database 
 const users = [
   { id: 1, email: 'user1@example.com', password: '$2b$10$K3YBXXa2bMMsKGZvSvWbCuH/0r1dwnrHgHPu3dz2lBPQaTx1DQUlC' }, // Password is "password1"
   { id: 2, email: 'user2@example.com', password: '$2b$10$dIsHdU8F3tE5Jg.ZNeSdqecK83/Vho.UlExJngSRQeh/0iwLysV7S' }, // Password is "password2"
 ];
+
+const app = express();
+const PORT = 3000;
 
 // Middleware to parse JSON requests
 app.use(bodyParser.json());
@@ -20,7 +20,7 @@ app.post('/login', (req, res) => {
   const { email, password } = req.body;
 
   // Find user by email
-  const user = users.find(user => user.email === email);
+  const user = Users.find(user => user.email === email);
 
   if (!user) {
     return res.status(404).json({ message: 'User not found' });
